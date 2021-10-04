@@ -18,17 +18,19 @@ app.engine('hbs',
 
 
 //Configuracion del motor de vistas que se usara
-// app.set('view engine', 'handlebars')
+app.set('view engine', 'hbs')
 app.set('views', './views')
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
 
 //espacio de rutas
 //app.use('/api/productos', routerProductos)
 
-app.get("/",(req,res)=>{
-    res.render('datos.hbs', inventario.getById(4))
+app.get("/",async (req,res)=>{
+    let producto = await inventario.getById(4)
+    console.log(producto)
+res.render('datos.hbs', producto)
 })
 
 
