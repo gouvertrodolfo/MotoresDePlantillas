@@ -1,0 +1,23 @@
+extends index
+
+block producto 
+
+    h1(style="color:blue;")!=titulo
+    
+    
+     table.table-striped
+      tr
+        th Nombre 
+        th Precio
+        th Foto
+
+
+      each p in productos
+        tr
+          td= p.title 
+          td= p.price
+          td= img
+                img.image(src=p.thumbnail, style="width:25px ;height:25px")
+                
+
+    
