@@ -1,5 +1,4 @@
 const express = require('express')
-const pug = require('Pug')
 const Contenedor =require('./Contenedor.js');
 /* -------------------------------------- */
 const inventario =new Contenedor('productos.txt')
@@ -7,10 +6,8 @@ const inventario =new Contenedor('productos.txt')
 
 const app = express()
 
-
-
 //Configuracion del motor de vistas que se usara
-app.set('view engine', 'Pug')
+app.set('view engine', 'pug')
 app.set('views', './views')
 
 app.use(express.json())
@@ -20,9 +17,15 @@ app.use(express.urlencoded({ extended: true }))
 //app.use('/api/productos', routerProductos)
 
 app.get("/",async (req,res)=>{
-    let producto = await inventario.getAll()
-    console.log(producto)
-res.render('datos.hbs', producto)
+    let items = await inventario.getAll()
+    const tit = 'Vista de productos'
+
+    if (items.length == 0){
+        res.render('sinProducto', { titulo:tit})      
+    }
+    else{
+        res.render('producto', { titulo:tit, productos:items})
+    }
 })
 
 
