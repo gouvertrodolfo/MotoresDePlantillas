@@ -1,8 +1,8 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
-const Contenedor =require('./Contenedor.js');
-/* -------------------------------------- */
-const inventario =new Contenedor('productos.txt')
+const { apiProductos } = require("./routes/apiProductos")
+const { webProductos } = require("./routes/webProductos")
+
 /* -------------------------------------- */
 
 const app = express()
@@ -21,17 +21,14 @@ app.engine('hbs',
 app.set('view engine', 'hbs')
 app.set('views', './views')
 
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 //espacio de rutas
-//app.use('/api/productos', routerProductos)
+app.use('/api/productos', apiProductos)
+app.use('/productos', webProductos)
 
-app.get("/",async (req,res)=>{
-    let producto = await inventario.getById(4)
-    console.log(producto)
-res.render('datos.hbs', producto)
-})
 
 
 const PORT = 8080
