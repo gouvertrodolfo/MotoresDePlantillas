@@ -2,7 +2,17 @@ extends index
 
 block producto 
 
-    form 
-        label(for="title") 
-            span Titulo
-        input(type="text").
+    form(action="/productos",method="post",class="form-producto")
+        div(class="form-producto") 
+            label(for="title") Title  
+            input(type="text",name="title",id="title",required)
+        div(class="form-producto")
+            label(for="price") Price
+            input(type="number",name="price",id="price",step="0.01",min="0",required)  
+        div(class="form-producto")
+            label(for="foto") Foto Url
+            input(type="url",name="thumbnail",id="thumbnail",placeholder="https://example.com",pattern="https://.*",size="30",required="true")  
+        div(class="form-producto")
+            input(type="submit", value="enviar")
+
+            input(type="button", value="Cancelar" onclick="location.href='/productos/listado'")

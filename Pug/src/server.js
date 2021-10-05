@@ -1,32 +1,21 @@
 const express = require('express')
-const Contenedor =require('./Contenedor.js');
+const { apiProductos } = require("./routes/apiProductos")
+const { webProductos } = require("./routes/webProductos")
 /* -------------------------------------- */
-const inventario =new Contenedor('productos.txt')
-/* -------------------------------------- */
+
 
 const app = express()
 
 //Configuracion del motor de vistas que se usara
 app.set('view engine', 'pug')
 app.set('views', './views')
-
+app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //espacio de rutas
-//app.use('/api/productos', routerProductos)
-
-app.get("/",async (req,res)=>{
-    let items = await inventario.getAll()
-    const tit = 'Vista de productos'
-
-    if (items.length == 0){
-        res.render('sinProducto', { titulo:tit})      
-    }
-    else{
-        res.render('producto', { titulo:tit, productos:items})
-    }
-})
+app.use('/api/productos',   apiProductos)
+app.use('/productos',       webProductos)
 
 
 const PORT = 8080
