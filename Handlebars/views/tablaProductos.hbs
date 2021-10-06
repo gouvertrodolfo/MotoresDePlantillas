@@ -1,12 +1,18 @@
-<table border="1">
-  <tr>
-    <td>Nombre</td><td>Precio</td><td>Foto</td>
-  </tr>
-{{#each productos}}
-  <tr>  
-     <td>{{title}} </td> 
-     <td>{{price}}</td> 
-     <td><img class="image" src={{thumbnail}} style="width:25px ;height:25px"></td>
-  </tr>   
-{{/each}}
-</table>
+<div class="container">
+  <table class="table">
+    <tr>
+      <td>Nombre</td><td>Precio</td><td>Foto</td>
+    </tr> 
+  {{#each productos}}
+    <tr>  
+      <td>{{title}} </td> 
+      <td>{{price}}</td> 
+      <td><img class="image" src={{thumbnail}} style="width:25px ;height:25px"></td>
+    </tr>   
+  {{/each}}
+  </table>
+</div>
+
+    <div class="btn-group btn-group-justified">
+        <input type="button" value="Nuevo Producto" onclick="location.href='/productos'" class="btn btn-default">
+    </div>

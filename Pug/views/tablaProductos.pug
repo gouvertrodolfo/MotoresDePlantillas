@@ -1,8 +1,8 @@
 extends index
 
 block producto 
-
-    table.table-striped
+  div(class="container")
+    table.table-striped(class="table")
       tr
         th Nombre 
         th Precio
@@ -17,7 +17,7 @@ block producto
               img.image(src=p.thumbnail, style="width:25px ;height:25px")
 
     form(action="/productos",method="get",class="form-producto")
-            input(type="submit", value="Agregar producto")
+            input(type="submit", value="Agregar producto" class="btn btn-default")
 
 
     
