@@ -21,13 +21,12 @@ app.engine('hbs',
 app.set('view engine', 'hbs')
 app.set('views', './views')
 
-app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //espacio de rutas
 app.use('/api/productos', apiProductos)
-app.use('/productos', webProductos)
+app.use('/', webProductos)
 
 
 

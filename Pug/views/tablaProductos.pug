@@ -16,8 +16,9 @@ block producto
           td= img
               img.image(src=p.thumbnail, style="width:25px ;height:25px")
 
-    form(action="/productos",method="get",class="form-producto")
-            input(type="submit", value="Agregar producto" class="btn btn-default")
+    div(class = "btn-group btn-group-justified")
+      form(action="/",method="get",class="form-producto")
+        input(type="submit", value="Agregar producto" class="btn btn-default")
 
 
     
